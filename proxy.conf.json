@@ -1,0 +1,14 @@
+{
+  "/am/**": {
+    "target": "https://cdk.example.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/oauth2/**": {
+    "target": "https://cdk.example.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
