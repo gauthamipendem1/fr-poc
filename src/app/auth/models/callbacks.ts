@@ -17,15 +17,30 @@ export interface AuthStepState {
 }
 
 export enum CallbackType {
-  NameCallback = 'NameCallback',
-  PasswordCallback = 'PasswordCallback',
-  ChoiceCallback = 'ChoiceCallback',
   BooleanAttributeInputCallback = 'BooleanAttributeInputCallback',
+  ChoiceCallback = 'ChoiceCallback',
+  ConfirmationCallback = 'ConfirmationCallback',
+  DeviceProfileCallback = 'DeviceProfileCallback',
+  HiddenValueCallback = 'HiddenValueCallback',
   KbaCreateCallback = 'KbaCreateCallback',
-  TextOutputCallback = 'TextOutputCallback',
-  ReCaptchaCallback = 'ReCaptchaCallback',
-  WebAuthnRegistrationCallback = 'WebAuthnRegistrationCallback',
-  WebAuthnAuthenticationCallback = 'WebAuthnAuthenticationCallback',
+  MetadataCallback = 'MetadataCallback',
+  NameCallback = 'NameCallback',
+  NumberAttributeInputCallback = 'NumberAttributeInputCallback',
+  PasswordCallback = 'PasswordCallback',
+  PingOneProtectEvaluationCallback = 'PingOneProtectEvaluationCallback',
+  PingOneProtectInitializeCallback = 'PingOneProtectInitializeCallback',
   PollingWaitCallback = 'PollingWaitCallback',
-  HiddenValueCallback = 'HiddenValueCallback'
+  ReCaptchaCallback = 'ReCaptchaCallback',
+  ReCaptchaEnterpriseCallback = 'ReCaptchaEnterpriseCallback',
+  RedirectCallback = 'RedirectCallback',
+  SelectIdPCallback = 'SelectIdPCallback',
+  StringAttributeInputCallback = 'StringAttributeInputCallback',
+  SuspendedTextOutputCallback = 'SuspendedTextOutputCallback',
+  TermsAndConditionsCallback = 'TermsAndConditionsCallback',
+  TextInputCallback = 'TextInputCallback',
+  TextOutputCallback = 'TextOutputCallback',
+  ValidatedCreatePasswordCallback = 'ValidatedCreatePasswordCallback',
+  ValidatedCreateUsernameCallback = 'ValidatedCreateUsernameCallback',
+  WebAuthnRegistrationCallback = 'WebAuthnRegistrationCallback',
+  WebAuthnAuthenticationCallback = 'WebAuthnAuthenticationCallback'
 }

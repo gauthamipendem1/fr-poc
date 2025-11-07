@@ -1,16 +1,32 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TreeRunnerService } from '../../auth/tree-runner.service';
 import { AuthStepState } from '../../auth/models/callbacks';
 import { environment } from '../../../environments/environment';
+import { BrandingService, BrandConfig } from '../../services/branding.service';
 import { NameCallbackComponent } from '../../callbacks/name-callback/name-callback.component';
 import { PasswordCallbackComponent } from '../../callbacks/password-callback/password-callback.component';
 import { ChoiceCallbackComponent } from '../../callbacks/choice-callback/choice-callback.component';
 import { TextOutputCallbackComponent } from '../../callbacks/text-output-callback/text-output-callback.component';
 import { WebauthnRegisterCallbackComponent } from '../../callbacks/webauthn-register-callback/webauthn-register-callback.component';
 import { WebauthnAuthCallbackComponent } from '../../callbacks/webauthn-auth-callback/webauthn-auth-callback.component';
+import { ConfirmationCallbackComponent } from '../../callbacks/confirmation-callback/confirmation-callback.component';
+import { NumberAttributeInputCallbackComponent } from '../../callbacks/number-attribute-input-callback/number-attribute-input-callback.component';
+import { TextInputCallbackComponent } from '../../callbacks/text-input-callback/text-input-callback.component';
+import { SuspendedTextOutputCallbackComponent } from '../../callbacks/suspended-text-output-callback/suspended-text-output-callback.component';
+import { RedirectCallbackComponent } from '../../callbacks/redirect-callback/redirect-callback.component';
+import { SelectIdPCallbackComponent } from '../../callbacks/select-idp-callback/select-idp-callback.component';
+import { MetadataCallbackComponent } from '../../callbacks/metadata-callback/metadata-callback.component';
+import { DeviceProfileCallbackComponent } from '../../callbacks/device-profile-callback/device-profile-callback.component';
+import { ReCaptchaEnterpriseCallbackComponent } from '../../callbacks/recaptcha-enterprise-callback/recaptcha-enterprise-callback.component';
+import { PingProtectInitializeCallbackComponent } from '../../callbacks/ping-protect-initialize-callback/ping-protect-initialize-callback.component';
+import { PingProtectEvaluationCallbackComponent } from '../../callbacks/ping-protect-evaluation-callback/ping-protect-evaluation-callback.component';
+import { BooleanAttributeInputCallbackComponent } from '../../callbacks/boolean-attr-input-callback/boolean-attribute-input-callback.component';
+import { KbaCreateCallbackComponent } from '../../callbacks/kba-create-callback/kba-create-callback.component';
+import { PollingWaitCallbackComponent } from '../../callbacks/polling-wait-callback/polling-wait-callback.component';
+import { RecaptchaCallbackComponent } from '../../callbacks/recaptcha-callback/recaptcha-callback.component';
 import { getCallbackMapping } from '../../auth/callback-mapper';
 
 @Component({
@@ -18,17 +34,41 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     NameCallbackComponent,
     PasswordCallbackComponent,
     ChoiceCallbackComponent,
     TextOutputCallbackComponent,
     WebauthnRegisterCallbackComponent,
-    WebauthnAuthCallbackComponent
+    WebauthnAuthCallbackComponent,
+    ConfirmationCallbackComponent,
+    NumberAttributeInputCallbackComponent,
+    TextInputCallbackComponent,
+    SuspendedTextOutputCallbackComponent,
+    RedirectCallbackComponent,
+    SelectIdPCallbackComponent,
+    MetadataCallbackComponent,
+    DeviceProfileCallbackComponent,
+    ReCaptchaEnterpriseCallbackComponent,
+    PingProtectInitializeCallbackComponent,
+    PingProtectEvaluationCallbackComponent,
+    BooleanAttributeInputCallbackComponent,
+    KbaCreateCallbackComponent,
+    PollingWaitCallbackComponent,
+    RecaptchaCallbackComponent
   ],
   template: `
     <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-md w-full space-y-8">
-        <div>
+        <div class="page-header" *ngIf="currentBrand">
+          <h2 class="page-title">
+            {{ currentBrand.title }}
+          </h2>
+          <p class="mt-2 text-center text-sm">
+            Enter your credentials to access your account
+          </p>
+        </div>
+        <div *ngIf="!currentBrand">
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
           </h2>
@@ -107,7 +147,7 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 <!-- Name Callback -->
                 <app-name-callback 
                   *ngIf="callbackData.type === 'NameCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading"
                   (valueChange)="onCallbackChange($event)">
                 </app-name-callback>
@@ -115,7 +155,7 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 <!-- Password Callback -->
                 <app-password-callback 
                   *ngIf="callbackData.type === 'PasswordCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading"
                   (valueChange)="onCallbackChange($event)">
                 </app-password-callback>
@@ -123,7 +163,7 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 <!-- Choice Callback -->
                 <app-choice-callback 
                   *ngIf="callbackData.type === 'ChoiceCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading"
                   (valueChange)="onCallbackChange($event)">
                 </app-choice-callback>
@@ -131,14 +171,14 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 <!-- Text Output Callback -->
                 <app-text-output-callback 
                   *ngIf="callbackData.type === 'TextOutputCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading">
                 </app-text-output-callback>
 
                 <!-- WebAuthn Registration Callback -->
                 <app-webauthn-register-callback 
                   *ngIf="callbackData.type === 'WebAuthnRegistrationCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading"
                   (valueChange)="onCallbackChange($event)">
                 </app-webauthn-register-callback>
@@ -146,10 +186,130 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 <!-- WebAuthn Authentication Callback -->
                 <app-webauthn-auth-callback 
                   *ngIf="callbackData.type === 'WebAuthnAuthenticationCallback'"
-                  [callback]="callbackData"
+                  [callback]="callbackData.payload"
                   [disabled]="stepState.isLoading"
                   (valueChange)="onCallbackChange($event)">
                 </app-webauthn-auth-callback>
+
+                <!-- Confirmation Callback -->
+                <app-confirmation-callback 
+                  *ngIf="callbackData.type === 'ConfirmationCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-confirmation-callback>
+
+                <!-- Number Attribute Input Callback -->
+                <app-number-attribute-input-callback 
+                  *ngIf="callbackData.type === 'NumberAttributeInputCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-number-attribute-input-callback>
+
+                <!-- Text Input Callback -->
+                <app-text-input-callback 
+                  *ngIf="callbackData.type === 'TextInputCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-text-input-callback>
+
+                <!-- Boolean Attribute Input Callback -->
+                <app-boolean-attr-input-callback 
+                  *ngIf="callbackData.type === 'BooleanAttributeInputCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-boolean-attr-input-callback>
+
+                <!-- KBA Create Callback -->
+                <app-kba-create-callback 
+                  *ngIf="callbackData.type === 'KbaCreateCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-kba-create-callback>
+
+                <!-- Suspended Text Output Callback -->
+                <app-suspended-text-output-callback 
+                  *ngIf="callbackData.type === 'SuspendedTextOutputCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-suspended-text-output-callback>
+
+                <!-- reCAPTCHA Callback -->
+                <app-recaptcha-callback 
+                  *ngIf="callbackData.type === 'ReCaptchaCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-recaptcha-callback>
+
+                <!-- reCAPTCHA Enterprise Callback -->
+                <app-recaptcha-enterprise-callback 
+                  *ngIf="callbackData.type === 'ReCaptchaEnterpriseCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-recaptcha-enterprise-callback>
+
+                <!-- Redirect Callback -->
+                <app-redirect-callback 
+                  *ngIf="callbackData.type === 'RedirectCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-redirect-callback>
+
+                <!-- Select IdP Callback -->
+                <app-select-idp-callback 
+                  *ngIf="callbackData.type === 'SelectIdPCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-select-idp-callback>
+
+                <!-- Metadata Callback -->
+                <app-metadata-callback 
+                  *ngIf="callbackData.type === 'MetadataCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-metadata-callback>
+
+                <!-- Device Profile Callback -->
+                <app-device-profile-callback 
+                  *ngIf="callbackData.type === 'DeviceProfileCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-device-profile-callback>
+
+                <!-- Polling Wait Callback -->
+                <app-polling-wait-callback 
+                  *ngIf="callbackData.type === 'PollingWaitCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-polling-wait-callback>
+
+                <!-- PingOne Protect Initialize Callback -->
+                <app-ping-protect-initialize-callback 
+                  *ngIf="callbackData.type === 'PingOneProtectInitializeCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-ping-protect-initialize-callback>
+
+                <!-- PingOne Protect Evaluation Callback -->
+                <app-ping-protect-evaluation-callback 
+                  *ngIf="callbackData.type === 'PingOneProtectEvaluationCallback'"
+                  [callback]="callbackData.payload"
+                  [disabled]="stepState.isLoading"
+                  (onSubmit)="onCallbackSubmit($event)">
+                </app-ping-protect-evaluation-callback>
 
                 <!-- Unknown callback type -->
                 <div *ngIf="!isSupportedCallback(callbackData.type)" 
@@ -171,7 +331,7 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
               <button
                 type="submit"
                 [disabled]="stepState.isLoading"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="btn-primary group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span *ngIf="!stepState.isLoading">Continue</span>
                 <span *ngIf="stepState.isLoading">Processing...</span>
@@ -186,6 +346,11 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
                 Don't have an account? Sign up
               </a>
             </div>
+            <div class="border-t pt-4 mt-4">
+              <a routerLink="/documentation" class="text-xs text-gray-500 hover:text-gray-700">
+                📚 View Documentation
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -194,14 +359,23 @@ import { getCallbackMapping } from '../../auth/callback-mapper';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   stepState: AuthStepState | null = null;
+  currentBrand!: BrandConfig;
   private subscription = new Subscription();
 
   constructor(
     private treeRunner: TreeRunnerService,
-    private router: Router
+    private router: Router,
+    private brandingService: BrandingService
   ) {}
 
   ngOnInit(): void {
+    // Subscribe to branding changes
+    this.subscription.add(
+      this.brandingService.currentBrand$.subscribe(brand => {
+        this.currentBrand = brand;
+      })
+    );
+
     this.subscription.add(
       this.treeRunner.stepState$.subscribe(state => {
         this.stepState = state;
@@ -234,6 +408,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   onCallbackChange(callback: any): void {
     // Callback has been updated, no additional action needed
     console.log('Callback updated:', callback);
+  }
+
+  onCallbackSubmit(value: any): void {
+    // Handle direct callback submission (e.g., for auto-submitting callbacks)
+    console.log('Callback submitted:', value);
+    this.onSubmit();
   }
 
   onSubmit(): void {

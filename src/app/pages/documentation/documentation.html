@@ -1,0 +1,581 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="page-header" *ngIf="currentBrand">
+    <h1 class="page-title">{{ currentBrand.title }} - Documentation</h1>
+    <p class="text-center text-sm opacity-90">
+      Complete guide to ForgeRock integration and branding system
+    </p>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- Sidebar Navigation -->
+      <nav class="lg:w-1/4 bg-white rounded-lg shadow-md p-6 h-fit lg:sticky lg:top-8">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900">Documentation</h2>
+        <ul class="space-y-2">
+          <li>
+            <button 
+              (click)="setActiveSection('overview')"
+              [class.bg-blue-50]="activeSection === 'overview'"
+              [class.text-blue-600]="activeSection === 'overview'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              📋 Overview
+            </button>
+          </li>
+          <li>
+            <button 
+              (click)="setActiveSection('quickstart')"
+              [class.bg-blue-50]="activeSection === 'quickstart'"
+              [class.text-blue-600]="activeSection === 'quickstart'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              🚀 Quick Start
+            </button>
+          </li>
+          <li>
+            <button 
+              (click)="setActiveSection('callbacks')"
+              [class.bg-blue-50]="activeSection === 'callbacks'"
+              [class.text-blue-600]="activeSection === 'callbacks'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              🔧 Callback System
+            </button>
+          </li>
+          <li>
+            <button 
+              (click)="setActiveSection('branding')"
+              [class.bg-blue-50]="activeSection === 'branding'"
+              [class.text-blue-600]="activeSection === 'branding'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              🎨 Branding System
+            </button>
+          </li>
+          <li>
+            <button 
+              (click)="setActiveSection('technical')"
+              [class.bg-blue-50]="activeSection === 'technical'"
+              [class.text-blue-600]="activeSection === 'technical'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              ⚙️ Technical Details
+            </button>
+          </li>
+          <li>
+            <button 
+              (click)="setActiveSection('business')"
+              [class.bg-blue-50]="activeSection === 'business'"
+              [class.text-blue-600]="activeSection === 'business'"
+              class="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors">
+              💼 Business Features
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="lg:w-3/4">
+        
+        <!-- Overview Section -->
+        <section *ngIf="activeSection === 'overview'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">📋 System Overview</h2>
+          
+          <div class="prose max-w-none">
+            <p class="text-lg text-gray-600 mb-6">
+              A comprehensive Angular application providing dynamic authentication UI rendering and complete brand customization for ForgeRock Access Management.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4">🌟 Key Features</h3>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <li class="flex items-start space-x-3 bg-blue-50 p-4 rounded-lg">
+                <span class="text-2xl">🔄</span>
+                <div>
+                  <strong>Dynamic UI Rendering</strong>
+                  <p class="text-sm text-gray-600">Automatically adapts to ForgeRock tree changes</p>
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 bg-green-50 p-4 rounded-lg">
+                <span class="text-2xl">🎨</span>
+                <div>
+                  <strong>Complete Brand Control</strong>
+                  <p class="text-sm text-gray-600">Teams supply CSS files for full visual customization</p>
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 bg-purple-50 p-4 rounded-lg">
+                <span class="text-2xl">📱</span>
+                <div>
+                  <strong>Mobile-First Design</strong>
+                  <p class="text-sm text-gray-600">Responsive layouts for all devices</p>
+                </div>
+              </li>
+              <li class="flex items-start space-x-3 bg-yellow-50 p-4 rounded-lg">
+                <span class="text-2xl">🔒</span>
+                <div>
+                  <strong>26 Callback Types</strong>
+                  <p class="text-sm text-gray-600">Complete ForgeRock authentication support</p>
+                </div>
+              </li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mb-4">🏗️ Architecture</h3>
+            <div class="bg-gray-100 p-6 rounded-lg mb-6">
+              <pre class="text-sm">
+┌─────────────────────────────────────────────┐
+│              Angular Application             │
+├─────────────────────────────────────────────┤
+│  🎨 BrandingService                         │
+│  ├── Dynamic CSS loading                   │
+│  ├── Brand detection from URL              │
+│  └── Theme customization                   │
+├─────────────────────────────────────────────┤
+│  🔄 TreeRunnerService                       │
+│  ├── ForgeRock communication               │
+│  ├── Authentication state management       │
+│  └── Dynamic step processing               │
+├─────────────────────────────────────────────┤
+│  🧩 Callback Components (26 types)         │
+│  ├── Username/Password inputs              │
+│  ├── Multi-factor authentication           │
+│  ├── Social login options                  │
+│  └── Advanced security features            │
+└─────────────────────────────────────────────┘
+              </pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🔄 How Dynamic UI Works</h3>
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <ol class="list-decimal list-inside space-y-2">
+                <li><strong>ForgeRock Admin</strong> modifies authentication tree</li>
+                <li><strong>Application</strong> receives new callback configuration</li>
+                <li><strong>UI automatically</strong> renders appropriate components</li>
+                <li><strong>No code changes</strong> or deployments needed!</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section *ngIf="activeSection === 'quickstart'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">🚀 Quick Start Guide</h2>
+          
+          <div class="prose max-w-none">
+            <h3 class="text-xl font-semibold mb-4">📋 Prerequisites</h3>
+            <ul class="list-disc list-inside mb-6 space-y-1">
+              <li>Node.js 18+</li>
+              <li>ForgeRock Access Management instance</li>
+              <li>Angular CLI</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mb-4">⚡ 5-Minute Setup</h3>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg mb-6">
+              <pre># Clone and install
+git clone &lt;repository-url&gt;
+cd fr-poc
+npm install
+
+# Start development server
+npm run start
+
+# Open browser
+https://localhost:4200</pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🎨 Test Different Brands</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <div class="border border-blue-300 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-600">Brand A - Professional</h4>
+                <p class="text-sm text-gray-600 mb-2">Enterprise blue theme</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">/a/login</code>
+              </div>
+              <div class="border border-red-300 p-4 rounded-lg">
+                <h4 class="font-semibold text-red-600">Brand B - Modern</h4>
+                <p class="text-sm text-gray-600 mb-2">Dynamic red theme</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">/b/login</code>
+              </div>
+              <div class="border border-green-300 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-600">Brand C - Compact</h4>
+                <p class="text-sm text-gray-600 mb-2">Efficient green theme</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">/c/login</code>
+              </div>
+              <div class="border border-gray-300 p-4 rounded-lg">
+                <h4 class="font-semibold text-gray-600">Minimal Theme</h4>
+                <p class="text-sm text-gray-600 mb-2">Clean, minimal design</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">/minimal/login</code>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🔧 Configuration</h3>
+            <p class="mb-4">Update your ForgeRock environment in <code class="bg-gray-100 px-2 py-1 rounded">src/environments/environment.ts</code>:</p>
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <pre class="text-sm">export const environment = {{ '{' }}
+  fr: {{ '{' }}
+    serverConfig: {{ '{' }}
+      baseUrl: 'https://your-forgerock.com/am',
+      timeout: '5000'
+    {{ '}' }},
+    treeLogin: 'Login',
+    treeRegister: 'Registration'
+  {{ '}' }}
+{{ '}' }};</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Callbacks Section -->
+        <section *ngIf="activeSection === 'callbacks'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">🔧 Callback System</h2>
+          
+          <div class="prose max-w-none">
+            <p class="text-lg text-gray-600 mb-6">
+              The system supports all 26 ForgeRock callback types, automatically rendering the appropriate UI components based on authentication tree configuration.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4">📊 Supported Callback Types</h3>
+            <div class="overflow-x-auto mb-8">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Callback Types</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Use Case</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Basic Input</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Name, Password, Text, Number, Boolean</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">User credentials and basic info</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Authentication</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">WebAuthn Registration/Auth, Choice</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Biometric and selection-based auth</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Security</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">reCAPTCHA, Device Profile, Metadata</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Bot protection and device fingerprinting</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Multi-Factor</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">SMS/Email OTP, KBA</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Additional authentication factors</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Enterprise</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">SAML, OAuth, PingOne Protect</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Enterprise identity integration</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🔄 Dynamic Flow Example</h3>
+            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+              <h4 class="font-semibold mb-3">Multi-Factor Authentication Flow:</h4>
+              <ol class="list-decimal list-inside space-y-2">
+                <li><strong>Step 1:</strong> Username input callback → User enters username</li>
+                <li><strong>Step 2:</strong> Password + Choice callbacks → User enters password, selects SMS/Email</li>
+                <li><strong>Step 3:</strong> Text Input callback → User enters OTP code</li>
+                <li><strong>Result:</strong> Authentication complete or additional steps</li>
+              </ol>
+              <p class="mt-3 text-sm text-gray-600">
+                <strong>Key Point:</strong> UI automatically adapts to each step without any code changes!
+              </p>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🧩 Component Architecture</h3>
+            <div class="bg-gray-100 p-4 rounded-lg">
+              <pre class="text-sm">Base Pattern:
+├── BaseBrandedCallback (extends)
+├── BaseCallbackInterface (implements)  
+├── Brand-aware styling
+└── Reactive value management
+
+Example: NameCallbackComponent
+├── Input field with brand styling
+├── Validation and error display
+├── Real-time value updates
+└── Accessibility features</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Branding Section -->
+        <section *ngIf="activeSection === 'branding'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">🎨 Branding System</h2>
+          
+          <div class="prose max-w-none">
+            <p class="text-lg text-gray-600 mb-6">
+              Complete brand customization system allowing teams to supply their own CSS files for full visual control over the authentication experience.
+            </p>
+
+            <h3 class="text-xl font-semibold mb-4">🏢 Multi-Brand Architecture</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <div class="text-center">
+                <div class="bg-blue-100 p-4 rounded-lg mb-3">
+                  <span class="text-3xl">🏢</span>
+                </div>
+                <h4 class="font-semibold">URL-Based Routing</h4>
+                <p class="text-sm text-gray-600">Different brands based on path</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">/brand/page</code>
+              </div>
+              <div class="text-center">
+                <div class="bg-green-100 p-4 rounded-lg mb-3">
+                  <span class="text-3xl">🎨</span>
+                </div>
+                <h4 class="font-semibold">External CSS Files</h4>
+                <p class="text-sm text-gray-600">Teams supply brand.css</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">brands/your-brand.css</code>
+              </div>
+              <div class="text-center">
+                <div class="bg-purple-100 p-4 rounded-lg mb-3">
+                  <span class="text-3xl">⚡</span>
+                </div>
+                <h4 class="font-semibold">Dynamic Loading</h4>
+                <p class="text-sm text-gray-600">Instant brand switching</p>
+                <code class="text-xs bg-gray-100 px-2 py-1 rounded">Auto-detection</code>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">📝 Creating a New Brand</h3>
+            <div class="space-y-4 mb-8">
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-semibold">Step 1: Create CSS File</h4>
+                <p class="text-sm text-gray-600">Place file at <code>/public/assets/styles/brands/your-brand.css</code></p>
+              </div>
+              <div class="border-l-4 border-green-500 pl-4">
+                <h4 class="font-semibold">Step 2: Add Configuration</h4>
+                <p class="text-sm text-gray-600">Update BrandingService with brand details</p>
+              </div>
+              <div class="border-l-4 border-purple-500 pl-4">
+                <h4 class="font-semibold">Step 3: Configure Routes</h4>
+                <p class="text-sm text-gray-600">Add URL routing for brand access</p>
+              </div>
+              <div class="border-l-4 border-orange-500 pl-4">
+                <h4 class="font-semibold">Step 4: Test</h4>
+                <p class="text-sm text-gray-600">Navigate to <code>/your-brand/login</code></p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🎨 CSS Customization Example</h3>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg mb-6">
+              <pre class="text-sm">/* Complete visual control */
+.min-h-screen {{ '{' }}
+  background: linear-gradient(45deg, #your-color1, #your-color2) !important;
+  font-family: 'Your Brand Font' !important;
+{{ '}' }}
+
+/* Form inputs */
+input, select, textarea, .form-input {{ '{' }}
+  border: 2px solid #your-brand-color !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+{{ '}' }}
+
+/* Buttons */
+button, .btn-primary {{ '{' }}
+  background: var(--brand-primary) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+{{ '}' }}</pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">📊 Brand Examples</h3>
+            <div class="space-y-4">
+              <div class="border border-blue-300 bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-600">Enterprise (Brand A)</h4>
+                <p class="text-sm text-gray-600">Professional blue theme with corporate styling, elevated shadows, and formal typography</p>
+              </div>
+              <div class="border border-red-300 bg-red-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-red-600">Consumer (Brand B)</h4>
+                <p class="text-sm text-gray-600">Dynamic red theme with dramatic effects, bold animations, and modern gradients</p>
+              </div>
+              <div class="border border-green-300 bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-600">Compact (Brand C)</h4>
+                <p class="text-sm text-gray-600">Efficient green theme optimized for space, compact layouts, and minimal visual elements</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Section -->
+        <section *ngIf="activeSection === 'technical'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">⚙️ Technical Details</h2>
+          
+          <div class="prose max-w-none">
+            <h3 class="text-xl font-semibold mb-4">🔧 Core Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-600 mb-2">TreeRunnerService</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• ForgeRock SDK integration</li>
+                  <li>• Authentication state management</li>
+                  <li>• Dynamic step processing</li>
+                  <li>• Error handling</li>
+                </ul>
+              </div>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold text-green-600 mb-2">BrandingService</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• URL-based brand detection</li>
+                  <li>• Dynamic CSS loading</li>
+                  <li>• Theme configuration</li>
+                  <li>• Brand switching</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🔄 Data Flow</h3>
+            <div class="bg-gray-100 p-6 rounded-lg mb-6">
+              <pre class="text-sm">Authentication Flow:
+User Action → TreeRunnerService → ForgeRock SDK → Server
+    ↓              ↓                 ↓            ↓
+UI Update ← State Management ← SDK Response ← Response
+
+Branding Flow:
+URL Change → BrandingService → CSS Loading → Component Update
+    ↓            ↓               ↓            ↓
+Route ← Brand Detection ← File Loading ← Style Application</pre>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🧩 Component Pattern</h3>
+            <div class="bg-blue-50 p-4 rounded-lg mb-6">
+              <h4 class="font-semibold mb-2">All callback components follow this pattern:</h4>
+              <ul class="text-sm space-y-1">
+                <li>• Extend <code>BaseBrandedCallback</code> for brand awareness</li>
+                <li>• Implement <code>BaseCallbackInterface</code> for consistency</li>
+                <li>• Use reactive forms with real-time validation</li>
+                <li>• Emit events for parent component communication</li>
+                <li>• Handle accessibility and keyboard navigation</li>
+              </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">📁 Project Structure</h3>
+            <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
+              <pre class="text-sm">src/app/
+├── auth/                    # Authentication logic
+│   ├── tree-runner.service.ts
+│   ├── callback-mapper.ts
+│   └── models/
+├── callbacks/               # 26 callback components  
+│   ├── base-branded-callback.ts
+│   ├── name-callback/
+│   └── ...
+├── services/
+│   └── branding.service.ts  # Brand management
+└── pages/                   # Page components
+
+public/assets/styles/brands/ # Brand CSS files</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Business Section -->
+        <section *ngIf="activeSection === 'business'" class="bg-white rounded-lg shadow-md p-8">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900">💼 Business Features</h2>
+          
+          <div class="prose max-w-none">
+            <h3 class="text-xl font-semibold mb-4">📈 Business Value</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h4 class="font-semibold text-green-600 mb-2">💰 Cost Savings</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Zero authentication UI maintenance</li>
+                  <li>• No deployments for auth changes</li>
+                  <li>• Reduced testing overhead</li>
+                  <li>• Single codebase, multiple brands</li>
+                </ul>
+              </div>
+              <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-600 mb-2">⚡ Time to Market</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Instant authentication flow changes</li>
+                  <li>• New brands in hours, not weeks</li>
+                  <li>• Real-time security updates</li>
+                  <li>• A/B testing without code</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🎯 Use Cases</h3>
+            <div class="space-y-4 mb-8">
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">🏢 Enterprise Customer Portal</h4>
+                <p class="text-sm text-gray-600 mb-2">Professional authentication with optional MFA and SAML integration</p>
+                <div class="text-xs bg-gray-100 p-2 rounded">
+                  <strong>URL:</strong> /enterprise/login • <strong>Features:</strong> Corporate styling, audit logging, hardware keys
+                </div>
+              </div>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">📱 Consumer Mobile App</h4>
+                <p class="text-sm text-gray-600 mb-2">Touch-friendly authentication with social login and biometrics</p>
+                <div class="text-xs bg-gray-100 p-2 rounded">
+                  <strong>URL:</strong> /mobile/login • <strong>Features:</strong> Touch optimization, social providers, WebAuthn
+                </div>
+              </div>
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="font-semibold mb-2">🤝 Partner Integration</h4>
+                <p class="text-sm text-gray-600 mb-2">Branded experiences with varying security requirements per partner</p>
+                <div class="text-xs bg-gray-100 p-2 rounded">
+                  <strong>URL:</strong> /partner-*/login • <strong>Features:</strong> Partner branding, federated identity, custom policies
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">📊 Feature Comparison</h3>
+            <div class="overflow-x-auto mb-8">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Feature</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Traditional Auth</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ForgeRock Integration</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">UI Changes</td>
+                    <td class="px-6 py-4 text-red-600">Code + Deploy</td>
+                    <td class="px-6 py-4 text-green-600">Config Only</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 font-medium text-gray-900">New Auth Methods</td>
+                    <td class="px-6 py-4 text-red-600">Development Required</td>
+                    <td class="px-6 py-4 text-green-600">Configuration Only</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Multi-Brand Support</td>
+                    <td class="px-6 py-4 text-red-600">Complex Implementation</td>
+                    <td class="px-6 py-4 text-green-600">Built-in Support</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="px-6 py-4 font-medium text-gray-900">Security Updates</td>
+                    <td class="px-6 py-4 text-red-600">Code Changes</td>
+                    <td class="px-6 py-4 text-green-600">Instant Updates</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4">🎯 Success Metrics</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="text-center bg-blue-50 p-4 rounded-lg">
+                <div class="text-2xl font-bold text-blue-600">0 Hours</div>
+                <div class="text-sm text-gray-600">Auth UI Maintenance</div>
+              </div>
+              <div class="text-center bg-green-50 p-4 rounded-lg">
+                <div class="text-2xl font-bold text-green-600">95%+</div>
+                <div class="text-sm text-gray-600">Completion Rate</div>
+              </div>
+              <div class="text-center bg-purple-50 p-4 rounded-lg">
+                <div class="text-2xl font-bold text-purple-600">Instant</div>
+                <div class="text-sm text-gray-600">Security Response</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>

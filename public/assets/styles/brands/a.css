@@ -1,0 +1,148 @@
+/* Brand A - Professional Blue */
+:root {
+  --brand-primary: #1e40af;
+  --brand-secondary: #3b82f6;
+  --brand-bg: #f8fafc;
+  --brand-text: #1e293b;
+  --brand-radius: 0.5rem;
+  --brand-font: 'Inter', sans-serif;
+  --brand-container-padding: 2rem;
+  --brand-input-padding: 1rem;
+  --brand-button-padding: 1rem 2rem;
+  --brand-margin: 1.5rem;
+  --brand-font-scale: 1;
+  --brand-font-weight: 400;
+}
+
+/* Full page background */
+.min-h-screen {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0) !important;
+  font-family: var(--brand-font) !important;
+}
+
+/* Main container styling */
+.max-w-md, .callback-container {
+  background: white !important;
+  padding: 2rem !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2) !important;
+  border-left: 4px solid var(--brand-primary) !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Headers and titles */
+h1, h2, h3, h4, h5, h6, .page-title {
+  color: var(--brand-primary) !important;
+  font-family: var(--brand-font) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Form elements */
+input, select, textarea, .form-input {
+  border: 2px solid #e5e7eb !important;
+  border-radius: var(--brand-radius) !important;
+  padding: var(--brand-input-padding) !important;
+  font-family: var(--brand-font) !important;
+  font-size: 1rem !important;
+  transition: all 0.2s ease !important;
+  background: white !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+input:focus, select:focus, textarea:focus, .form-input:focus {
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1) !important;
+  outline: none !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Labels */
+label, .form-label {
+  font-weight: 600 !important;
+  color: var(--brand-text) !important;
+  margin-bottom: 0.75rem !important;
+  display: block !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-family: var(--brand-font) !important;
+}
+
+/* Buttons */
+button, .btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--brand-radius) !important;
+  padding: var(--brand-button-padding) !important;
+  font-weight: 600 !important;
+  font-family: var(--brand-font) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 6px rgba(30, 64, 175, 0.3) !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+button:hover, .btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(30, 64, 175, 0.4) !important;
+}
+
+/* Links */
+a {
+  color: var(--brand-primary) !important;
+  font-weight: 600 !important;
+  font-family: var(--brand-font) !important;
+}
+
+a:hover {
+  color: var(--brand-secondary) !important;
+}
+
+/* Choice options */
+.choice-option {
+  padding: 0.75rem !important;
+  border-radius: calc(var(--brand-radius) / 2) !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid #e2e8f0 !important;
+  margin-bottom: 0.5rem !important;
+  background: white !important;
+}
+
+.choice-option:hover {
+  background-color: #e0f2fe !important;
+  border-color: var(--brand-secondary) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Error messages */
+.error-message, .bg-red-50 {
+  background: #fee2e2 !important;
+  border: 1px solid #fecaca !important;
+  border-radius: var(--brand-radius) !important;
+  color: #dc2626 !important;
+  font-size: 0.875rem !important;
+  margin-top: 0.5rem !important;
+  font-weight: 500 !important;
+  padding: 0.5rem !important;
+}
+
+/* Success messages */
+.bg-green-50 {
+  background: #dcfce7 !important;
+  border: 1px solid #bbf7d0 !important;
+  border-radius: var(--brand-radius) !important;
+}
+
+/* Page headers */
+.page-header {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary)) !important;
+  color: white !important;
+  padding: 2rem !important;
+  border-radius: var(--brand-radius) !important;
+  margin-bottom: 2rem !important;
+  text-align: center !important;
+}

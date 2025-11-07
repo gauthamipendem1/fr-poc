@@ -1,284 +1,262 @@
-# ForgeRock Angular Authentication App
+# ForgeRock Angular Integration
 
-A modern Angular application demonstrating ForgeRock authentication trees integration with advanced features including WebAuthn/Passkeys, multi-factor authentication, and OIDC PKCE flow.
+A comprehensive Angular application that provides dynamic authentication UI rendering and complete brand customization for ForgeRock Access Management integration.
 
-## Features
+## 🌟 Key Features
 
-- ✅ **Authentication Trees**: Full support for ForgeRock login and registration trees
-- ✅ **WebAuthn/Passkeys**: Biometric authentication and security key support
-- ✅ **Multi-Factor Authentication**: SMS, Email, OTP support via callback components
-- ✅ **OIDC PKCE Flow**: Secure token management with ForgeRock SDK
-- ✅ **Responsive UI**: Tailwind CSS with accessible components
-- ✅ **Reactive Forms**: Angular reactive forms with validation
-- ✅ **Route Guards**: Protected routes with authentication
-- ✅ **Token Management**: Secure token storage and refresh handling
+- **🔄 Dynamic UI Rendering**: Automatically adapts to ForgeRock authentication tree changes
+- **🎨 Complete Brand Customization**: Teams can supply their own CSS files for full visual control
+- **📱 Mobile-First Design**: Responsive layouts optimized for all devices
+- **🔒 Comprehensive Authentication**: Supports all 26 ForgeRock callback types
+- **⚡ Real-Time Updates**: No code deployments needed for authentication flow changes
+- **🏢 Multi-Brand Support**: Unlimited brands with URL-based routing
 
-## Architecture
+## 🚀 Quick Start
 
-### Core Components
+### Prerequisites
+- Node.js 18+
+- ForgeRock Access Management instance
+- Angular CLI
 
-- **TreeRunnerService**: Orchestrates ForgeRock authentication tree execution
-- **Callback Components**: Reusable UI components for each ForgeRock callback type
-- **Auth Guard**: Protects routes requiring authentication
-- **Auth Interceptor**: Automatically adds Bearer tokens to API requests
-
-### Supported Callback Types
-
-- `NameCallback` - Username input
-- `PasswordCallback` - Password input with visibility toggle
-- `ChoiceCallback` - Single/multi-select options
-- `TextOutputCallback` - Information, warning, and error messages
-- `WebAuthnRegistrationCallback` - Passkey registration
-- `WebAuthnAuthenticationCallback` - Passkey authentication
-- `BooleanAttributeInputCallback` - Boolean input fields
-- `KbaCreateCallback` - Knowledge-based authentication setup
-- `ReCaptchaCallback` - CAPTCHA verification
-- `PollingWaitCallback` - Polling for async operations
-
-## Prerequisites
-
-- Node.js 18+ and npm
-- ForgeRock 7.4 CDK deployment
-- Modern browser with WebAuthn support (for passkeys)
-
-## Setup Instructions
-
-### 1. Install Dependencies
-
+### Installation
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd fr-poc
+
+# Install dependencies
 npm install
+
+# Start development server
+npm run start
+
+# Open browser
+https://localhost:4200
 ```
 
-### 2. Configure ForgeRock Environment
+### Test Different Brands
+```bash
+https://localhost:4200/a/login        # Brand A (Professional Blue)
+https://localhost:4200/b/login        # Brand B (Modern Red)
+https://localhost:4200/c/login        # Brand C (Compact Green)
+https://localhost:4200/minimal/login  # Minimal Theme
+https://localhost:4200/mobile/login   # Mobile Optimized
+```
 
-Update `src/environments/environment.ts` with your ForgeRock settings:
+## 📖 Documentation
 
+### For Developers
+- **[Technical Documentation](./TECHNICAL_DOCUMENTATION.md)**: Comprehensive technical guide for developers
+- **[Quick Start Guide](./QUICK_START_GUIDE.md)**: Get up and running in 5 minutes
+
+### For Business/Product Teams
+- **[Business Documentation](./BUSINESS_DOCUMENTATION.md)**: Functional overview and business benefits
+
+## 🏗️ Architecture Overview
+
+### Core Components
+```
+┌─────────────────────────────────────────────┐
+│              Angular Application             │
+├─────────────────────────────────────────────┤
+│  🎨 BrandingService                         │
+│  ├── Dynamic CSS loading                   │
+│  ├── Brand detection from URL              │
+│  └── Theme customization                   │
+├─────────────────────────────────────────────┤
+│  🔄 TreeRunnerService                       │
+│  ├── ForgeRock communication               │
+│  ├── Authentication state management       │
+│  └── Dynamic step processing               │
+├─────────────────────────────────────────────┤
+│  🧩 Callback Components (26 types)         │
+│  ├── Username/Password inputs              │
+│  ├── Multi-factor authentication           │
+│  ├── Social login options                  │
+│  └── Advanced security features            │
+└─────────────────────────────────────────────┘
+```
+
+### Supported Authentication Methods
+- **Basic Authentication**: Username/password, email authentication
+- **Multi-Factor Authentication**: WebAuthn (biometrics), SMS/Email OTP, Knowledge-based auth
+- **Advanced Security**: reCAPTCHA, PingOne Protect, device profiling
+- **Social Authentication**: Google, Facebook, enterprise SAML
+- **Enterprise Features**: SSO integration, conditional authentication
+
+## 🎨 Brand Customization
+
+### Creating a New Brand
+
+1. **Create CSS File**: `/public/assets/styles/brands/your-brand.css`
+```css
+/* Complete visual control */
+.min-h-screen {
+  background: linear-gradient(45deg, #your-color1, #your-color2) !important;
+}
+
+input, button, .form-input {
+  /* Your brand styling */
+}
+```
+
+2. **Add Brand Configuration**: Update `BrandingService`
+3. **Add Route**: Configure URL routing
+4. **Test**: Navigate to `/your-brand/login`
+
+### Brand Examples
+- **Enterprise**: Professional blue theme with corporate styling
+- **Consumer**: Modern red theme with dynamic effects  
+- **Compact**: Green theme optimized for efficiency
+- **Minimal**: Clean, distraction-free interface
+- **Mobile**: Touch-optimized layouts for mobile apps
+
+## 🔐 ForgeRock Integration
+
+### Supported Callback Types (26 Total)
+| Category | Callback Types |
+|----------|---------------|
+| **Basic Input** | Name, Password, Text Input, Number Input, Boolean Input |
+| **Authentication** | WebAuthn Registration/Authentication, Choice Selection |
+| **Security** | reCAPTCHA (v2 & Enterprise), Device Profile, Metadata |
+| **Multi-Factor** | SMS/Email OTP, Knowledge-based Authentication |
+| **User Management** | Validated Username/Password Creation, String/Number Attributes |
+| **Advanced** | Polling Wait, Redirect, Select Identity Provider, Terms & Conditions |
+| **Enterprise** | Suspended Text Output, PingOne Protect (Initialize & Evaluation) |
+
+### Dynamic UI Flow
+```
+ForgeRock Tree Change → SDK Response → UI Auto-Update → User Interaction
+```
+
+No application deployment needed for authentication flow modifications!
+
+## 🛠️ Development
+
+### Project Structure
+```
+src/
+├── app/
+│   ├── auth/                    # Authentication logic
+│   │   ├── tree-runner.service.ts
+│   │   ├── callback-mapper.ts
+│   │   └── models/
+│   ├── callbacks/               # 26 callback components
+│   │   ├── base-branded-callback.ts
+│   │   ├── name-callback/
+│   │   ├── password-callback/
+│   │   └── ...
+│   ├── pages/                   # Page components
+│   │   ├── login/
+│   │   ├── register/
+│   │   └── account/
+│   ├── services/
+│   │   └── branding.service.ts  # Brand management
+│   └── app.routes.ts            # Multi-brand routing
+├── environments/                # ForgeRock configuration
+└── styles.css                   # Base styling
+
+public/assets/styles/brands/     # Brand CSS files
+├── a.css                        # Brand A styling
+├── b.css                        # Brand B styling
+└── your-brand.css               # Custom brand
+```
+
+### Adding New Callback Types
+1. Generate component: `ng generate component callbacks/new-callback --standalone`
+2. Extend `BaseBrandedCallback`
+3. Implement `BaseCallbackInterface`
+4. Update `callback-mapper.ts`
+5. Add to page templates
+
+### Available Scripts
+```bash
+npm run start       # Development server
+npm run build       # Production build
+npm run test        # Run tests
+npm run lint        # Code linting
+```
+
+## 🔧 Configuration
+
+### Environment Setup
 ```typescript
+// src/environments/environment.ts
 export const environment = {
-  production: false,
   fr: {
-    amUrl: 'https://your-cdk.example.com/am',
-    realmPath: '/your-realm',
-    clientId: 'your-oidc-client-id',
-    redirectUri: 'https://localhost:4200/callback',
-    scope: 'openid profile email',
-    treeLogin: 'YourLoginTree',
-    treeRegister: 'YourRegistrationTree'
+    serverConfig: {
+      baseUrl: 'https://your-forgerock-instance.com/am',
+      timeout: '5000'
+    },
+    treeLogin: 'Login',
+    treeRegister: 'Registration'
   }
 };
 ```
 
-### 3. ForgeRock Configuration Requirements
+### ForgeRock Requirements
+- **Authentication Trees**: Configured in ForgeRock AM
+- **OAuth 2.0 Client**: Registered for your application
+- **CORS Settings**: Allow your application domain
+- **HTTPS**: Required for WebAuthn functionality
 
-Ensure your ForgeRock environment has:
+## 📋 Feature Comparison
 
-- **OIDC Client** configured with:
-  - Client ID matching `environment.fr.clientId`
-  - PKCE enabled
-  - Redirect URI: `https://localhost:4200/callback`
-  - Scopes: `openid profile email`
+| Feature | Traditional Auth | ForgeRock Integration |
+|---------|-----------------|----------------------|
+| **UI Changes** | Code + Deploy | ForgeRock Config Only |
+| **New Auth Methods** | Development Required | Configuration Only |
+| **Brand Support** | Single Theme | Unlimited Brands |
+| **Mobile Optimization** | Manual Implementation | Built-in Responsive |
+| **Security Updates** | Code Changes | Instant Policy Updates |
+| **A/B Testing** | Complex Setup | Tree Configuration |
 
-- **Authentication Trees**:
-  - Login tree with username/password and WebAuthn nodes
-  - Registration tree with user creation and optional WebAuthn registration
-
-### 4. SSL Certificate (Required for WebAuthn)
-
-WebAuthn requires HTTPS. Generate a self-signed certificate for development:
-
-```bash
-# Generate SSL certificate for localhost
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/CN=localhost"
-
-# Move to Angular project
-mkdir ssl
-mv cert.pem key.pem ssl/
-```
-
-Update `angular.json` to use HTTPS:
-
-```json
-"serve": {
-  "builder": "@angular-devkit/build-angular:dev-server",
-  "options": {
-    "ssl": true,
-    "sslCert": "ssl/cert.pem",
-    "sslKey": "ssl/key.pem"
-  }
-}
-```
-
-## Running the Application
-
-### Development Server (with CORS Proxy)
-
-The application includes a proxy configuration to bypass CORS restrictions during development:
-
-```bash
-npm start
-# This runs: ng serve --ssl --proxy-config proxy.conf.json
-```
-
-**What the proxy does:**
-- Forwards `/am`, `/oauth2`, and `/json` requests from `localhost:4200` to `https://cdk.example.com`
-- Avoids browser CORS errors during development
-- Automatically handles authentication tree calls and token requests
-- SDK configured to use `https://localhost:4200/am` which gets proxied to the real ForgeRock server
-- Ignores SSL certificate validation (`secure: false`) for development with self-signed certs
-
-Navigate to `https://localhost:4200`. Accept the self-signed certificate warning.
-
-**Alternative start commands:**
-```bash
-npm run start:http          # HTTP version with proxy
-npm run start:no-proxy      # HTTPS without proxy (may have CORS issues)
-```
-
-**Important:** This proxy is **only for local development**. In production:
-- Host your Angular app under the same domain as ForgeRock AM, OR
-- Use a reverse proxy (nginx, Apache, etc.) to serve both applications, OR
-- Configure proper CORS headers in ForgeRock AM
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-Build artifacts will be stored in the `dist/` directory.
-
-## Application Flow
-
-### 1. Login Flow (`/login`)
-1. User navigates to login page
-2. TreeRunnerService starts the configured login tree
-3. Callbacks are rendered dynamically based on tree configuration
-4. User completes authentication steps (username/password, WebAuthn, MFA)
-5. On success, user is redirected to account page
-
-### 2. Registration Flow (`/register`)
-1. User navigates to registration page
-2. TreeRunnerService starts the configured registration tree
-3. User completes registration steps (profile info, password, WebAuthn setup)
-4. On success, user is redirected to account page
-
-### 3. WebAuthn/Passkey Support
-- **Registration**: Offered during registration or from account page
-- **Authentication**: Available as login option for returning users
-- **Fallback**: Always provides password-based alternatives
-
-### 4. Token Management
-- Tokens stored securely using ForgeRock SDK TokenManager
-- Automatic token refresh handled by SDK
-- Auth guard protects routes requiring valid tokens
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── auth/                           # Authentication services and guards
-│   │   ├── fr-sdk.config.ts           # ForgeRock SDK configuration
-│   │   ├── tree-runner.service.ts     # Tree orchestration service
-│   │   ├── auth.guard.ts              # Route protection
-│   │   ├── auth.interceptor.ts        # HTTP token interceptor
-│   │   ├── callback-mapper.ts         # Callback type mappings
-│   │   └── models/                    # TypeScript interfaces
-│   ├── callbacks/                     # Reusable callback components
-│   │   ├── name-callback/
-│   │   ├── password-callback/
-│   │   ├── webauthn-register-callback/
-│   │   └── ...
-│   ├── pages/                         # Main application pages
-│   │   ├── login/
-│   │   ├── register/
-│   │   ├── callback/
-│   │   ├── account/
-│   │   └── logout/
-│   ├── app.routes.ts                  # Application routing
-│   └── app.config.ts                  # Application configuration
-├── environments/                      # Environment configurations
-└── styles.css                        # Global Tailwind CSS
-```
-
-## Customization
-
-### Adding New Callback Types
-
-1. Create component in `src/app/callbacks/new-callback/`
-2. Implement `BaseCallbackInterface`
-3. Add mapping to `callback-mapper.ts`
-4. Import and use in page templates
-
-### Styling
-
-The application uses Tailwind CSS with `@tailwindcss/forms` for consistent form styling. Customize in:
-- `tailwind.config.js` for theme modifications
-- Component templates for specific styling
-- `src/styles.css` for global styles
-
-### Authentication Trees
-
-Configure your ForgeRock trees to include desired authentication factors:
-- Username/Password nodes
-- WebAuthn Registration/Authentication nodes
-- OTP/SMS/Email nodes for MFA
-- Choice nodes for authentication method selection
-
-## Security Considerations
-
-- ✅ HTTPS required for WebAuthn
-- ✅ Tokens stored using ForgeRock SDK secure storage
-- ✅ PKCE flow prevents authorization code interception
-- ✅ CSP headers recommended for production
-- ✅ No sensitive data logged to console
-- ✅ Auth guard protects sensitive routes
-
-## Browser Support
-
-- **WebAuthn**: Chrome 67+, Firefox 60+, Safari 14+, Edge 18+
-- **Application**: Modern browsers supporting ES2020
-- **Fallback**: Password authentication always available
-
-## Troubleshooting
+## 🚦 Getting Help
 
 ### Common Issues
+- **Brand not loading**: Check CSS file path and syntax
+- **Authentication errors**: Verify ForgeRock configuration and CORS
+- **Styling conflicts**: Ensure CSS uses `!important` declarations
 
-**WebAuthn not working**: Ensure HTTPS is enabled and browser supports WebAuthn
+### Documentation
+- **Technical Details**: See [Technical Documentation](./TECHNICAL_DOCUMENTATION.md)
+- **Business Overview**: See [Business Documentation](./BUSINESS_DOCUMENTATION.md)
+- **Quick Setup**: See [Quick Start Guide](./QUICK_START_GUIDE.md)
 
-**Authentication failures**: Check ForgeRock logs and verify tree configuration
+### Support Resources
+- **ForgeRock SDK Documentation**: [Official Docs](https://sdks.forgerock.com/)
+- **Angular Documentation**: [Angular.dev](https://angular.dev)
+- **Example Code**: Check `/src/app/callbacks/` for implementation examples
 
-**Token issues**: Clear browser storage and retry authentication
+## 🤝 Contributing
 
-**CORS errors**: 
-- For development: Use the included proxy configuration (`npm start`)
-- For production: Configure CORS in ForgeRock AM or use same-origin deployment
-- Check that `proxy.conf.json` target URL matches your ForgeRock deployment
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
 
-### Development Tips
+### Development Guidelines
+- Follow Angular style guide
+- Add tests for new callback components
+- Update documentation for new features
+- Test across multiple brands and devices
 
-- Use browser DevTools to inspect ForgeRock SDK operations
-- Check Network tab for authentication tree API calls
-- Verify token payload using JWT debugger tools
-- Test with different authentication tree configurations
+## 📄 License
 
-## Production Deployment
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-1. Update `environment.prod.ts` with production ForgeRock URLs
-2. Configure proper SSL certificates
-3. Set up proper CORS policies in ForgeRock
-4. Implement proper CSP headers
-5. Configure token refresh policies
-6. Set up monitoring for authentication failures
+## 🎯 Roadmap
 
-## Contributing
+### Upcoming Features
+- **Advanced Analytics**: Authentication flow analytics and reporting
+- **Theme Builder**: Visual interface for creating brand themes
+- **Component Library**: Reusable authentication components
+- **Advanced Layouts**: Additional layout options for specialized use cases
+- **Integration Templates**: Pre-built configurations for common scenarios
 
-1. Follow Angular style guide
-2. Use TypeScript strict mode
-3. Implement proper error handling
-4. Add JSDoc comments for public APIs
-5. Test with various ForgeRock tree configurations
+---
 
-## License
+**Built with ❤️ using Angular + ForgeRock**
 
-This project is provided as a demonstration of ForgeRock authentication integration patterns.
+*Ready to revolutionize your authentication experience!* 🚀

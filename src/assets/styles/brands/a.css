@@ -1,0 +1,107 @@
+/* Brand A Styling - Professional Blue Theme */
+:root {
+  --brand-primary: #1e40af;
+  --brand-secondary: #3b82f6;
+  --brand-bg: #f8fafc;
+  --brand-text: #1e293b;
+  --brand-radius: 0.5rem;
+  --brand-font: 'Inter', sans-serif;
+}
+
+.brand-a {
+  font-family: var(--brand-font);
+  color: var(--brand-text);
+  background-color: var(--brand-bg);
+}
+
+.brand-a .form-input {
+  border: 2px solid #cbd5e1;
+  border-radius: var(--brand-radius);
+  padding: 1rem;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.brand-a .form-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.brand-a .btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: white;
+  border: none;
+  border-radius: var(--brand-radius);
+  padding: 1rem 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px rgba(30, 64, 175, 0.2);
+}
+
+.brand-a .btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(30, 64, 175, 0.3);
+}
+
+.brand-a .callback-container {
+  background: white;
+  border-radius: var(--brand-radius);
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.brand-a .form-label {
+  font-weight: 600;
+  color: var(--brand-text);
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.brand-a .error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.brand-a .choice-option {
+  padding: 0.75rem;
+  border-radius: calc(var(--brand-radius) / 2);
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+.brand-a .choice-option:hover {
+  background-color: #e0f2fe;
+  border-color: var(--brand-secondary);
+  transform: translateX(4px);
+}
+
+.brand-a .page-header {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  color: white;
+  padding: 2rem;
+  border-radius: var(--brand-radius);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.brand-a .page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0;
+}

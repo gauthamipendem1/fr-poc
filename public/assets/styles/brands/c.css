@@ -1,0 +1,118 @@
+/* Brand C Styling - Compact Green Theme */
+:root {
+  --brand-primary: #059669;
+  --brand-secondary: #10b981;
+  --brand-bg: #f0fdf4;
+  --brand-text: #064e3b;
+  --brand-radius: 0.25rem;
+  --brand-font: 'Poppins', sans-serif;
+}
+
+.brand-c {
+  font-family: var(--brand-font);
+  color: var(--brand-text);
+  background-color: var(--brand-bg);
+}
+
+.brand-c .form-input {
+  border: 1px solid #a7f3d0;
+  border-radius: var(--brand-radius);
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.brand-c .form-input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+  outline: none;
+}
+
+.brand-c .btn-primary {
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: var(--brand-radius);
+  padding: 0.625rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.brand-c .btn-primary:hover {
+  background: #047857;
+}
+
+.brand-c .callback-container {
+  background: white;
+  border-radius: var(--brand-radius);
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(5, 150, 105, 0.1);
+  margin-bottom: 0.75rem;
+  border: 1px solid #d1fae5;
+}
+
+.brand-c .form-label {
+  font-weight: 600;
+  color: var(--brand-text);
+  margin-bottom: 0.375rem;
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.brand-c .error-message {
+  color: #dc2626;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.brand-c .choice-option {
+  padding: 0.375rem;
+  border-radius: calc(var(--brand-radius) / 2);
+  transition: background-color 0.15s ease;
+  font-size: 0.875rem;
+}
+
+.brand-c .choice-option:hover {
+  background-color: #dcfce7;
+}
+
+.brand-c .page-header {
+  background: var(--brand-primary);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--brand-radius);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.brand-c .page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Compact layout specific styles */
+.layout-compact .callback-container {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.layout-compact .form-input {
+  padding: 0.5rem;
+  font-size: 0.825rem;
+}
+
+.layout-compact .btn-primary {
+  padding: 0.5rem 1rem;
+  font-size: 0.825rem;
+}
+
+.layout-compact .form-label {
+  font-size: 0.7rem;
+  margin-bottom: 0.25rem;
+}

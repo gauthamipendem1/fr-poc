@@ -9,7 +9,7 @@ export const environment = {
     clientId: 'web',
     redirectUri: 'https://localhost:4200/callback',
     scope: 'openid profile email',
-    treeLogin: 'Login',
+    treeLogin: 'poc',
     treeRegister: 'Registration'
   }
 };
